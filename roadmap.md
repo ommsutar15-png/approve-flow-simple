@@ -5,10 +5,10 @@
 - [x] Schema: organizations, profiles, organization_members, clients, projects, tasks, task_versions, approval_links, comments, approvals, activity_logs
 - [x] Enums, FKs, indexes, constraints, updated_at triggers, signup trigger
 - [x] Multi-tenant RLS + authorization helper functions
-- [ ] Auth UI: signup, login, logout, reset password
-- [ ] Protected app shell: sidebar, top nav, user menu
-- [ ] Placeholder pages: Dashboard, Clients, Projects, Tasks, Approvals, Activity, Settings
-- [ ] Verify relationships, RLS, cross-org isolation, security scan
+- [x] Auth UI: signup, login, logout, reset password
+- [x] Protected app shell: sidebar, top nav, user menu
+- [x] Placeholder pages: Dashboard, Clients, Projects, Tasks, Approvals, Activity, Settings
+- [x] Verify relationships, RLS, cross-org isolation, security scan
 
 ## Later steps
 - Clients & projects CRUD
