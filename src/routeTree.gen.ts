@@ -22,6 +22,7 @@ import { Route as AuthenticatedClientsClientIdRouteImport } from './routes/_auth
 import { Route as AuthenticatedProjectsIndexRouteImport } from './routes/_authenticated/projects.index'
 import { Route as AuthenticatedProjectsProjectIdRouteImport } from './routes/_authenticated/projects.$projectId'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks.index'
+import { Route as AuthenticatedTasksTaskIdRouteImport } from './routes/_authenticated/tasks.$taskId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -91,6 +92,12 @@ const AuthenticatedTasksIndexRoute = AuthenticatedTasksIndexRouteImport.update({
   path: '/tasks/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedTasksTaskIdRoute =
+  AuthenticatedTasksTaskIdRouteImport.update({
+    id: '/tasks/$taskId',
+    path: '/tasks/$taskId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AuthenticatedSettingsRoute
   '/clients/$clientId': typeof AuthenticatedClientsClientIdRoute
   '/projects/$projectId': typeof AuthenticatedProjectsProjectIdRoute
+  '/tasks/$taskId': typeof AuthenticatedTasksTaskIdRoute
   '/clients/': typeof AuthenticatedClientsIndexRoute
   '/projects/': typeof AuthenticatedProjectsIndexRoute
   '/tasks/': typeof AuthenticatedTasksIndexRoute
@@ -116,6 +124,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AuthenticatedSettingsRoute
   '/clients/$clientId': typeof AuthenticatedClientsClientIdRoute
   '/projects/$projectId': typeof AuthenticatedProjectsProjectIdRoute
+  '/tasks/$taskId': typeof AuthenticatedTasksTaskIdRoute
   '/clients': typeof AuthenticatedClientsIndexRoute
   '/projects': typeof AuthenticatedProjectsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
@@ -132,6 +141,7 @@ export interface FileRoutesById {
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/clients/$clientId': typeof AuthenticatedClientsClientIdRoute
   '/_authenticated/projects/$projectId': typeof AuthenticatedProjectsProjectIdRoute
+  '/_authenticated/tasks/$taskId': typeof AuthenticatedTasksTaskIdRoute
   '/_authenticated/clients/': typeof AuthenticatedClientsIndexRoute
   '/_authenticated/projects/': typeof AuthenticatedProjectsIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/clients/$clientId'
     | '/projects/$projectId'
+    | '/tasks/$taskId'
     | '/clients/'
     | '/projects/'
     | '/tasks/'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/clients/$clientId'
     | '/projects/$projectId'
+    | '/tasks/$taskId'
     | '/clients'
     | '/projects'
     | '/tasks'
@@ -177,6 +189,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings'
     | '/_authenticated/clients/$clientId'
     | '/_authenticated/projects/$projectId'
+    | '/_authenticated/tasks/$taskId'
     | '/_authenticated/clients/'
     | '/_authenticated/projects/'
     | '/_authenticated/tasks/'
@@ -282,6 +295,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTasksIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/tasks/$taskId': {
+      id: '/_authenticated/tasks/$taskId'
+      path: '/tasks/$taskId'
+      fullPath: '/tasks/$taskId'
+      preLoaderRoute: typeof AuthenticatedTasksTaskIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -292,6 +312,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedClientsClientIdRoute: typeof AuthenticatedClientsClientIdRoute
   AuthenticatedProjectsProjectIdRoute: typeof AuthenticatedProjectsProjectIdRoute
+  AuthenticatedTasksTaskIdRoute: typeof AuthenticatedTasksTaskIdRoute
   AuthenticatedClientsIndexRoute: typeof AuthenticatedClientsIndexRoute
   AuthenticatedProjectsIndexRoute: typeof AuthenticatedProjectsIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
@@ -304,6 +325,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedClientsClientIdRoute: AuthenticatedClientsClientIdRoute,
   AuthenticatedProjectsProjectIdRoute: AuthenticatedProjectsProjectIdRoute,
+  AuthenticatedTasksTaskIdRoute: AuthenticatedTasksTaskIdRoute,
   AuthenticatedClientsIndexRoute: AuthenticatedClientsIndexRoute,
   AuthenticatedProjectsIndexRoute: AuthenticatedProjectsIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
