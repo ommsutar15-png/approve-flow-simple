@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader, EmptyState, LoadingRows } from "@/components/app/PageHeader";
 import { StatusBadge, OverdueBadge } from "@/components/app/StatusBadge";
 import { Button } from "@/components/ui/button";
-import { useTasksOverview } from "./tasks.index";
+import { useTasksOverview } from "@/lib/tasks-overview";
 import { formatDate, formatDateTime, isOverdue, type TaskStatus } from "@/lib/labels";
 
 export const Route = createFileRoute("/_authenticated/approvals")({
