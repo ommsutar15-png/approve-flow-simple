@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTasksOverview } from "@/lib/tasks-overview";
-import { supabase } from "@/integrations/supabase/client";
 import { PageHeader, EmptyState, LoadingRows } from "@/components/app/PageHeader";
 import { StatusBadge, OverdueBadge } from "@/components/app/StatusBadge";
 import { Button } from "@/components/ui/button";
