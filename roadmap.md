@@ -13,7 +13,7 @@
 ## Step 2 — Agency workflow (in progress)
 - [ ] Fix sign-up HTTP 530 error
 - [x] Clients, projects, tasks, task detail, version upload, approval links
-- [ ] Approvals page, activity page
+- [x] Approvals page, activity page
 - [ ] End-to-end test
 
 ## Later steps
