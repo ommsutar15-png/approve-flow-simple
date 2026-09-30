@@ -33,6 +33,6 @@ export async function logActivity(input: {
     actor_type: "agency",
     actor_id: userId,
     event_type: input.eventType,
-    metadata: input.metadata ?? {},
+    metadata: (input.metadata ?? {}) as never,
   });
 }
