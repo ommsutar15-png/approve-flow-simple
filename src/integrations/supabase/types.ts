@@ -138,6 +138,7 @@ export type Database = {
       }
       approvals: {
         Row: {
+          ai_summary: Json | null
           approval_link_id: string | null
           approved_by_email: string | null
           approved_by_name: string | null
@@ -152,6 +153,7 @@ export type Database = {
           version_id: string
         }
         Insert: {
+          ai_summary?: Json | null
           approval_link_id?: string | null
           approved_by_email?: string | null
           approved_by_name?: string | null
@@ -166,6 +168,7 @@ export type Database = {
           version_id: string
         }
         Update: {
+          ai_summary?: Json | null
           approval_link_id?: string | null
           approved_by_email?: string | null
           approved_by_name?: string | null
