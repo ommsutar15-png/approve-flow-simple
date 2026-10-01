@@ -23,6 +23,7 @@ import { Route as AuthenticatedProjectsIndexRouteImport } from './routes/_authen
 import { Route as AuthenticatedProjectsProjectIdRouteImport } from './routes/_authenticated/projects.$projectId'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks.index'
 import { Route as AuthenticatedTasksTaskIdRouteImport } from './routes/_authenticated/tasks.$taskId'
+import { Route as ApiPublicApproveTokenRouteImport } from './routes/api/public/approve.$token'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -98,6 +99,11 @@ const AuthenticatedTasksTaskIdRoute =
     path: '/tasks/$taskId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const ApiPublicApproveTokenRoute = ApiPublicApproveTokenRouteImport.update({
+  id: '/api/public/approve/$token',
+  path: '/api/public/approve/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -113,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/clients/': typeof AuthenticatedClientsIndexRoute
   '/projects/': typeof AuthenticatedProjectsIndexRoute
   '/tasks/': typeof AuthenticatedTasksIndexRoute
+  '/api/public/approve/$token': typeof ApiPublicApproveTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/clients': typeof AuthenticatedClientsIndexRoute
   '/projects': typeof AuthenticatedProjectsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
+  '/api/public/approve/$token': typeof ApiPublicApproveTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/_authenticated/clients/': typeof AuthenticatedClientsIndexRoute
   '/_authenticated/projects/': typeof AuthenticatedProjectsIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
+  '/api/public/approve/$token': typeof ApiPublicApproveTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -162,6 +171,7 @@ export interface FileRouteTypes {
     | '/clients/'
     | '/projects/'
     | '/tasks/'
+    | '/api/public/approve/$token'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/clients'
     | '/projects'
     | '/tasks'
+    | '/api/public/approve/$token'
   id:
     | '__root__'
     | '/'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/_authenticated/clients/'
     | '/_authenticated/projects/'
     | '/_authenticated/tasks/'
+    | '/api/public/approve/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -200,6 +212,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ApiPublicApproveTokenRoute: typeof ApiPublicApproveTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -302,6 +315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTasksTaskIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/approve/$token': {
+      id: '/api/public/approve/$token'
+      path: '/api/public/approve/$token'
+      fullPath: '/api/public/approve/$token'
+      preLoaderRoute: typeof ApiPublicApproveTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -339,6 +359,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ApiPublicApproveTokenRoute: ApiPublicApproveTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
