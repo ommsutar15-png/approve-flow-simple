@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { Upload, Send, Copy, ExternalLink, MessageSquare } from "lucide-react";
+import { Upload, Send, Copy, ExternalLink, MessageSquare, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { getMyUserId } from "@/lib/org";
@@ -312,6 +312,9 @@ function TaskDetail() {
                         {v.notes}
                       </p>
                     ) : null}
+                    {approval?.ai_summary ? (
+                      <RevisionPoints summary={approval.ai_summary as unknown as AiSummary} />
+                    ) : null}
                     {feedback.length ? (
                       <ul className="mt-3 space-y-2">
                         {feedback.map((c) => (
@@ -485,6 +488,34 @@ function TaskDetail() {
         </DialogContent>
       </Dialog>
     </section>
+  );
+}
+
+type AiSummary = {
+  summary: string;
+  points: { area: string; action: string; priority: "high" | "medium" | "low" }[];
+};
+
+function RevisionPoints({ summary }: { summary: AiSummary }) {
+  return (
+    <div className="mt-3 rounded-lg border border-primary/20 bg-primary/5 p-4 text-sm">
+      <div className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-primary">
+        <Sparkles className="h-3.5 w-3.5" /> AI revision points
+      </div>
+      <p className="mt-2 text-muted-foreground">{summary.summary}</p>
+      <ul className="mt-3 space-y-2">
+        {summary.points.map((p, i) => (
+          <li key={i} className="flex gap-2">
+            <span className="mt-0.5 shrink-0 rounded bg-background px-1.5 py-0.5 text-xs font-medium">{p.area}</span>
+            <span className="flex-1">{p.action}</span>
+            {p.priority === "high" ? (
+              <span className="shrink-0 text-xs font-medium text-destructive">High</span>
+            ) : null}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-3 text-xs text-muted-foreground">Generated from the client's feedback — check the original below.</p>
+    </div>
   );
 }
 
